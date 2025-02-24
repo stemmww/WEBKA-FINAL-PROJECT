@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recepie sharing site</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/sidebar.css">
+    <link rel="stylesheet" href="/index.css">
+</head>
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="lni lni-menu"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="/"><i class="lni lni-chef-hat" style="margin-top: 1rem;">Recepie</i></a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <% if (isAuthenticated) { %>
+                    <li class="sidebar-item">
+                        <a href="/profile" class="sidebar-link">
+                            <i class="lni lni-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                <% } %>
+                
+                <li class="sidebar-item">
+                    <a href="/recipes" class="sidebar-link">
+                        <i class="lni lni-agenda"></i>
+                        <span>Recepies</span>
+                    </a>
+                </li>
+                
+                <% if (!isAuthenticated) { %>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                            data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                            <i class="lni lni-protection"></i>
+                            <span>Auth</span>
+                        </a>
+                        <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="/login" class="sidebar-link">Login</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="/register" class="sidebar-link">Register</a>
+                            </li>
+                        </ul>
+                    </li>
+                <% } %>
+        
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                        data-bs-target="#more" aria-expanded="false" aria-controls="more">
+                        <i class="lni lni-layout"></i>
+                        <span>More</span>
+                    </a>
+                    <ul id="more" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="/guide" class="sidebar-link">Guide</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="/aboutus" class="sidebar-link">About</a>
+                        </li>
+                    </ul>
+                </li>
+        
+                <li class="sidebar-item">
+                    <a href="/contact" class="sidebar-link">
+                        <i class="lni lni-popup"></i>
+                        <span>Contact us</span>
+                    </a>
+                </li>
+        
+                <% if (isAuthenticated) { %>
+                    <li class="sidebar-item">
+                        <a href="/settings" class="sidebar-link">
+                            <i class="lni lni-cog"></i>
+                            <span>Setting</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/logout" class="sidebar-link">
+                            <i class="lni lni-exit"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                <% } %>
+            </ul>
+        </aside>
+        
+
+        
+        <div class="content">
+            <div class="container">
+                <div id="searchPopup" class="search-popup">
+                    <div class="search-popup-content">
+                      <input type="text" id="searchInput" placeholder="Search..." />
+                      <button id="closePopup" class="close-popup-btn">×</button>
+                    </div>
+                </div>
+                <div class="Page">
+                    <main class="home-page">
+                        <img alt="Home Background" src="/marb;e.avif" class="default-bkg">
+                        <button title="Search for Recipes" aria-label="Search for Recipes" id="searchButton" class="button search-opener">
+                            <svg width="30" height="30" viewBox="0 0 24 25" fill="#343C54" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11.2498 5.75037C10.8356 5.75037 10.4998 6.08615 10.4998 6.50037C10.4998 6.91458 10.8356 7.25037 11.2498 7.25037C13.874 7.25037 16.0011 9.37718 16.0011 12.0004C16.0011 12.4146 16.3369 12.7504 16.7511 12.7504C17.1653 12.7504 17.5011 12.4146 17.5011 12.0004C17.5011 8.54842 14.7021 5.75037 11.2498 5.75037Z" fill="#343C54"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2 11.9989C2 6.89126 6.14154 2.75098 11.25 2.75098C16.3585 2.75098 20.5 6.89126 20.5 11.9989C20.5 14.2836 19.6714 16.3747 18.2983 17.9883L21.7791 21.4695C22.072 21.7624 22.072 22.2372 21.7791 22.5301C21.4862 22.823 21.0113 22.823 20.7184 22.5301L17.2372 19.0486C15.6237 20.4197 13.5334 21.2469 11.25 21.2469C6.14154 21.2469 2 17.1066 2 11.9989ZM11.25 4.25098C6.96962 4.25098 3.5 7.72003 3.5 11.9989C3.5 16.2779 6.96962 19.7469 11.25 19.7469C15.5304 19.7469 19 16.2779 19 11.9989C19 7.72003 15.5304 4.25098 11.25 4.25098Z" fill="#343C54"/>
+                            </svg>
+                            <span class="placeholder-text font-normal p1-text">Search Recipes</span>
+                        </button>
+    
+                        <header class="widget-header">
+                            <h3 class="sub-title micro-text font-normal" style="color: #707070; text-transform: uppercase; margin-bottom: 0.5em; font-size: 1rem;">Personalize Your Experience</h3>
+                            <h2 class="title h3-text">What are your favorite food?</h2>
+                        </header>
+                      
+                        <article class="home-recipe-card-grid"></article>
+                                <div class="main p-3">
+                                    <div class="text-center">
+                                            <div class="container-fluid mt-3">
+                                            <div class="row mt-4" id="cardContainer">
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://i.pinimg.com/736x/2a/53/07/2a53076cd9691706d0d0f33b848e5421--tomato-basil-sauce-basil-pasta.jpg" class="card-img-top" alt="Card 1">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Spaghetti Carbonara</h5>
+                                                            <p class="card-text">Indulge in the rich, creamy flavors of Spaghetti Carbonara—an irresistible Italian classic with savory pancetta and Parmesan!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#carbonara" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://sun9-58.userapi.com/impf/c637918/v637918942/435cc/f7lQw6IXHE8.jpg?size=604x402&amp;quality=96&amp;sign=0d8b32752a30e8f17992a349b9f739a2&amp;type=album" class="card-img-top" alt="Card 2">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Chocolate Cake</h5>
+                                                            <p class="card-text">Treat yourself to a decadent, moist Chocolate Cake, bursting with rich cocoa flavor and velvety, smooth frosting!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#chocolate-cake" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://avatars.mds.yandex.net/i?id=503d03c038ed3979d52473329579b31a_l-8209398-images-thumbs&amp;n=13" class="card-img-top" alt="Card 3">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Margherita Pizza</h5>
+                                                            <p class="card-text">Savor the simplicity of a classic Margherita Pizza—fresh mozzarella, tangy tomato sauce, and fragrant basil on a crispy crust!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#margherita-pizza" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://i.pinimg.com/originals/df/e9/f9/dfe9f93de9e80cc49a1522e0ff8e460c.jpg" class="card-img-top" alt="Card 4">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Caesar Salad</h5>
+                                                            <p class="card-text">Enjoy the crisp, refreshing flavors of Caesar Salad romaine, Parmesan and savory croutons for the perfect bite!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#caesar-salad" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://i.pinimg.com/originals/eb/07/fb/eb07fbadd098d0c1b4455daae8025210.jpg" class="card-img-top" alt="Card 5">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Chicken Biryani</h5>
+                                                            <p class="card-text">Delight in the aromatic flavors of Chicken Biryani—tender chicken, fragrant basmati rice, and a blend of bold spices in every bite!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#chicken-biryani" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://breadnshow.ru/image/catalog/articles/c40b_4.jpg" class="card-img-top" alt="Card 6">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Tom Yum Soup</h5>
+                                                            <p class="card-text"> Experience the vibrant, tangy flavors of Tom Yum Soup—spicy Thai broth with shrimp, fresh herbs, and zesty lime!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#tom-yum-soup" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://pazlyigra.ru/uploads/posts/2020-11/1604964672_nastol_com_ua-260453.jpg" class="card-img-top" alt="Card 7">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">French Croissants</h5>
+                                                            <p class="card-text">Indulge in the flaky, buttery perfection of French Croissants—golden layers that melt in your mouth with every bite!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#french-croissants" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://i.pinimg.com/originals/20/72/3b/20723b5e6365155bc64a6299c64317e7.jpg" class="card-img-top" alt="Card 8">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Sushi Platter</h5>
+                                                            <p class="card-text">Dive into a fresh, colorful Sushi Platter—delicate slices of fish, perfectly seasoned rice, and vibrant flavors in every roll!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#sushi-platter" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://taksidomodedovo.com/images/msledf_1003_beeftaco_horiz.jpg" class="card-img-top" alt="Card 9">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Beef Tacos</h5>
+                                                            <p class="card-text"> Enjoy the bold, zesty flavors of Beef Tacos—juicy seasoned beef, fresh toppings, and a crispy tortilla for the perfect bite!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#beef-tacos" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://wok-pho.ru/uploads/styles/product_image_preview/webstore_products_049d6b62ae5ed5c28196f254e1b678c1.jpg?1661508025" class="card-img-top" alt="Card 10">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Pad Thai</h5>
+                                                            <p class="card-text">Savor the delicious blend of flavors in Pad Thai—stir-fried noodles, tender shrimp and a tangy sauce that excites the palate!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#pad-thai" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://avatars.mds.yandex.net/i?id=e7f63f5b20490d7d957e6a78243e3986_l-9657618-images-thumbs&amp;n=13" class="card-img-top" alt="Card 11">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Banana Pancakes</h5>
+                                                            <p class="card-text">Treat yourself to fluffy Banana Pancakes—light, sweet, and bursting with ripe banana flavor, topped with syrup for a delightful breakfast!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#banana-pancakes" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://avatars.mds.yandex.net/i?id=e21e0d022f46e266a5cf7528b083a289_l-2477903-images-thumbs&amp;n=13" class="card-img-top" alt="Card 12">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Lasagna</h5>
+                                                            <p class="card-text"> Dive into layers of cheesy goodness with Lasagna—rich meat sauce, creamy béchamel, and perfectly baked pasta for a comforting meal!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#lasagna" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://avatars.mds.yandex.net/i?id=f9f90b110b5d9a7eb50b67acd3ba6822ab26a327-8454246-images-thumbs&amp;n=13" class="card-img-top" alt="Card 13">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Cchicken-salad</h5>
+                                                            <p class="card-text">Enjoy a refreshing Chicken Salad-tender chicken, crisp vegetables, and a creamy dressing, making for a light and satisfying meal!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#chicken-salad" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://fasterfitness.com/wp-content/uploads/2014/04/stir-fry1782488-1.jpg" class="card-img-top" alt="Card 14">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">vegetable-stir-fry</h5>
+                                                            <p class="card-text">Delight in a vibrant Vegetable Stir-Fry—crunchy, colorful veggies tossed in a savory sauce for a quick and healthy meal!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#vegetable-stir-fry" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://cdn-m.sport24.ru/m/ce15/0e82/e282/4cdd/80cc/2848/df85/0c9b/1600_10000_max.jpeg" class="card-img-top" alt="Card 15">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">tiramisu</h5>
+                                                            <p class="card-text">Indulge in the luxurious layers of Tiramisu—espresso-soaked ladyfingers and a dusting of cocoa for the perfect dessert!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#tiramisu" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://i.ytimg.com/vi/dxisygejvls/maxresdefault.jpg" class="card-img-top" alt="Card 15">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Chocolate Chip Cookies</h5>
+                                                            <p class="card-text">Enjoy warm, gooey chocolate chip cookies, freshly baked to perfection—perfect for any sweet tooth!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#chocolate-chip-cookies" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://i.pinimg.com/originals/c0/85/6b/c0856ba61593cfd6f6865b5b6e4c4cc6.jpg" class="card-img-top" alt="Guacamole">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Guacamole</h5>
+                                                            <p class="card-text">Dive into the creamy, zesty goodness of fresh guacamole—perfect with tortilla chips or as a topping!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#guacamole" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-4">
+                                                    <div class="card">
+                                                        <img src="https://artkonditer.by/wp-content/uploads/2019/10/Slivochnyj-biskvit.jpg" class="card-img-top" alt="Card 15">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Cheesecake</h5>
+                                                            <p class="card-text">Savor the creamy delight of classic cheesecake with a buttery graham cracker crust and fresh fruit topping!</p>
+                                                            <div id="rating">
+                                                                <span class="star" data-value="1">★</span>
+                                                                <span class="star" data-value="2">★</span>
+                                                                <span class="star" data-value="3">★</span>
+                                                                <span class="star" data-value="4">★</span>
+                                                                <span class="star" data-value="5">★</span>
+                                                            </div>
+                                                            <a href="recipes.html#cheesecake" class="btn btn-success">View recipe</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </main>
+                </div>
+                <h2>User List</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(user => { %>
+                        <tr>
+                            <td><%= user.name %></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.age %></td>
+                            <td>
+                                <form method="GET" action="/users/update/<%= user._id %>" style="display:inline;">
+                                    <button type="submit">Edit</button>
+                                </form>
+                                <form method="POST" action="/users/delete/<%= user._id %>" style="display:inline;">
+                                    <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            </div>
+            
+        </div>
+                <!-- Add these to your HTML for Bootstrap functionality -->
+        
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous">
+    </script>
+    <script src="/script.js"></script>
+    <script src="/search.js"></script>
+    <script src="/theme.js" defer></script>
+
+    
+</body>
+</html>

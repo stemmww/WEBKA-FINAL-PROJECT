@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .registration-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .registration-form h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .registration-form label {
+            margin-bottom: 5px;
+            display: block;
+        }
+        .registration-form input {
+            width: 93%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .registration-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(24, 134, 77) ;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .registration-form button:hover {
+            background-color: rgb(25, 111, 66) ;
+        }
+
+        .error {color:red;}
+    </style>
+</head>
+<body>
+    <div class="registration-form">
+        <h1>Register</h1>
+        <form action="/register" id="registrationForm" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" name="name" required><br>
+            
+            <label for="email">Email:</label>
+            <input type="email" name="email" required><br>
+            
+            <label for="age">Age:</label>
+            <input type="number" name="age" required><br>
+            
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+
+            <button type="submit">Register</button>
+        </form>
+        <a href="/login">Already have an account? Login here.</a>
+    </div>
+    
+    
+</body>
+</html>

@@ -1,0 +1,231 @@
+
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.main {
+    min-height: 100vh;
+    overflow: auto;
+    transition: all 0.35s ease-in-out;
+    background-color: #fafbfe;
+    z-index: 1; 
+    padding: 20px;
+    
+}
+
+#sidebar {
+    transition: all .25s ease-in-out;
+    background-color: #ffffff;
+    box-shadow: 0 0 2em rgba(0, 0, 0, 0.12);
+    z-index: 5005;
+    display: flex;
+    flex-direction: column;
+    position: fixed; 
+    height: 100%; 
+    top: 0;
+    left: 0;
+
+}
+
+#sidebar.expand {
+    width: 210px;
+
+}
+
+.toggle-btn {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    padding: 1rem 0.425rem;
+    border: none;
+    z-index: 1100;
+    display: block;
+}
+
+.toggle-btn i {
+    font-size: 1.5rem;
+    color: #000000;
+}
+
+.sidebar-logo {
+    margin: auto 0;
+}
+
+.sidebar-logo a {
+    color: #000000;
+    font-size: 1.95rem;
+    font-weight: 600;
+}
+
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) a.sidebar-link span {
+    display: none;
+}
+
+.sidebar-nav {
+    padding: 1rem 0;
+    flex: 1 1 auto;
+}
+
+a.sidebar-link {
+    padding: .625rem 0.425rem;
+    color: #000000;
+    display: block;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-link i {
+    font-size: 1.1rem;
+    margin-right: .25rem;
+}
+
+a.sidebar-link:hover {
+    background-color: rgba(207, 207, 207, 0.075);
+    border-left: 3px solid #ffffff;
+}
+
+.sidebar-item {
+    position: relative;
+}
+
+#sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
+    position: absolute;
+    top: 0;
+    left: 70px;
+    background-color: #fefefe;
+    padding: 0;
+    min-width: 15rem;
+    display: none;
+}
+
+#sidebar:not(.expand) .sidebar-item:hover .has-dropdown+.sidebar-dropdown {
+    display: block;
+    max-height: 15em;
+    width: 100%;
+    opacity: 1;
+}
+
+#sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after {
+    border: solid;
+    border-width: 0 .075rem .075rem 0;
+    content: "";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.4rem;
+    transform: rotate(-135deg);
+    transition: all .2s ease-out;
+}
+
+#sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
+    transform: rotate(45deg);
+    transition: all .2s ease-out;
+}
+
+@media (min-width: 989px) {
+    .toggle-btn {
+        display: none;
+    }
+
+    .sidebar-logo {
+        margin: auto;
+    }
+
+    #sidebar {
+        width: 210px; 
+    }
+
+
+    .home-page .strawberry-grain {
+        top: -100px;
+        left: -40px;
+        width: 190px;
+    }
+
+    
+    .search-opener {
+        width: 600px;
+        padding: 0 16px;
+        line-height: 56px;
+        margin: 132px 350px;  /* 10px top, 20px right, 30px bottom, 40px left */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.05) inset;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+    }
+
+    .button {
+        letter-spacing: 0;
+        outline: none;
+        border: none;
+        border-radius: 3em;
+        box-sizing: border-box;
+        position: absolute;
+        font-size: 14px;
+        text-decoration: none;
+        text-transform: capitalize;
+        white-space: nowrap;
+        text-align: center;
+        cursor: pointer;
+        transition: all 200ms ease;
+        background-color: #fff;
+    }
+    .content {
+        flex-grow: 1;
+        margin-left: 210px;
+        overflow: auto;
+        overflow-x: hidden;
+        display: flex;
+        align-items: center;
+        position: relative;
+        flex-direction: column;
+    }
+    .widget-header{
+        display: block;
+        text-align: center;
+        margin: 1em auto 2em;
+        padding: 0 1em;
+    }
+}
+    
+
+@media (max-width: 989px) {
+    .search-button {
+        display: none;  /* Hides the button */
+    }
+    .search-popup{
+        display: none;
+    }
+    .widget-header{
+        display: none;
+    }
+    .content {
+        margin-left: 37px;
+    }
+
+}
+

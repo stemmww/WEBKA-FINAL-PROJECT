@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <title>Recipes - Recipe Sharing Site</title>
+    <link rel="stylesheet" href="/sidebar.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/recipes.css">
+</head>
+<body>
+    <aside id="sidebar">
+        <div class="d-flex">
+            <button class="toggle-btn" type="button">
+                <i class="lni lni-menu"></i>
+            </button>
+            <div class="sidebar-logo">
+                <a href="/"><i class="lni lni-chef-hat" style="margin-top: 1rem;">Recepie</i></a>
+            </div>
+        </div>
+        <ul class="sidebar-nav">
+            <% if (isAuthenticated) { %>
+                <li class="sidebar-item">
+                    <a href="/profile" class="sidebar-link">
+                        <i class="lni lni-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+            <% } %>
+            
+            <li class="sidebar-item">
+                <a href="/recipes" class="sidebar-link">
+                    <i class="lni lni-agenda"></i>
+                    <span>Recepies</span>
+                </a>
+            </li>
+            
+            <% if (!isAuthenticated) { %>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                        data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                        <i class="lni lni-protection"></i>
+                        <span>Auth</span>
+                    </a>
+                    <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="/signup" class="sidebar-link">Login</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="/register" class="sidebar-link">Register</a>
+                        </li>
+                    </ul>
+                </li>
+            <% } %>
+    
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                    data-bs-target="#more" aria-expanded="false" aria-controls="more">
+                    <i class="lni lni-layout"></i>
+                    <span>More</span>
+                </a>
+                <ul id="more" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a href="/guide" class="sidebar-link">Guide</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/aboutus" class="sidebar-link">About</a>
+                    </li>
+                </ul>
+            </li>
+    
+            <li class="sidebar-item">
+                <a href="/contact" class="sidebar-link">
+                    <i class="lni lni-popup"></i>
+                    <span>Contact us</span>
+                </a>
+            </li>
+    
+            <% if (isAuthenticated) { %>
+                <li class="sidebar-item">
+                    <a href="/settings" class="sidebar-link">
+                        <i class="lni lni-cog"></i>
+                        <span>Setting</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/logout" class="sidebar-link">
+                        <i class="lni lni-exit"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            <% } %>
+        </ul>
+    </aside>
+    
+
+    <div class="content">
+        <div class="container">
+            <div class="recipe">
+                <section>
+                        <h2 id="carbonara">Spaghetti Carbonara</h2>
+                        <img src="https://i.pinimg.com/736x/2a/53/07/2a53076cd9691706d0d0f33b848e5421--tomato-basil-sauce-basil-pasta.jpg" alt="Spaghetti Carbonara" width="200">
+                        <h3>Ingredients:</h3>
+                        <ul>
+                            <li>Spaghetti</li>
+                            <li>Pancetta</li>
+                            <li>Eggs</li>
+                            <li>Parmesan Cheese</li>
+                            <li>Black Pepper</li>
+                        </ul>
+                        <h3>Instructions:</h3>
+                        <ol>
+                            <li>Cook the spaghetti in salted water until al dente.</li>
+                            <li>Fry the pancetta until crispy.</li>
+                            <li>Whisk the eggs and cheese together in a bowl.</li>
+                            <li>Mix everything together with the pasta, adding pepper to taste.</li>
+                        </ol>
+                    
+                </section>
+        
+                <section>
+                    <h2 id="chocolate-cake">Chocolate Cake</h2>
+                    <img src="https://sun9-58.userapi.com/impf/c637918/v637918942/435cc/f7lQw6IXHE8.jpg?size=604x402&quality=96&sign=0d8b32752a30e8f17992a349b9f739a2&type=album" alt="Chocolate Cake" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>Flour</li>
+                        <li>Sugar</li>
+                        <li>Cocoa Powder</li>
+                        <li>Eggs</li>
+                        <li>Baking Powder</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>Preheat the oven to 350°F (175°C).</li>
+                        <li>Mix all the dry ingredients together.</li>
+                        <li>Add the eggs and mix until smooth.</li>
+                        <li>Bake for 30 minutes or until a toothpick comes out clean.</li>
+                    </ol>
+                </section>
+        
+                <section>
+                    <h2 id="margherita-pizza">Margherita Pizza</h2>
+                    <img src="https://avatars.mds.yandex.net/i?id=503d03c038ed3979d52473329579b31a_l-8209398-images-thumbs&n=13" alt="Margherita Pizza" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>Pizza Dough</li>
+                        <li>Tomato Sauce</li>
+                        <li>Fresh Mozzarella Cheese</li>
+                        <li>Fresh Basil Leaves</li>
+                        <li>Olive Oil</li>
+                        <li>Salt</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>Preheat the oven to 475°F (245°C).</li>
+                        <li>Roll out the pizza dough and spread the tomato sauce evenly.</li>
+                        <li>Top with slices of fresh mozzarella and basil leaves.</li>
+                        <li>Drizzle olive oil and sprinkle with salt.</li>
+                        <li>Bake for 10-12 minutes until the crust is golden and the cheese is bubbly.</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2 id="caesar-salad">Caesar Salad</h2>
+                    <img src="https://i.pinimg.com/originals/df/e9/f9/dfe9f93de9e80cc49a1522e0ff8e460c.jpg" alt="Caesar Salad" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>Romaine Lettuce</li>
+                        <li>Caesar Dressing</li>
+                        <li>Croutons</li>
+                        <li>Parmesan Cheese</li>
+                        <li>Black Pepper</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>Chop the romaine lettuce and place it in a bowl.</li>
+                        <li>Add Caesar dressing and toss until the lettuce is coated.</li>
+                        <li>Top with croutons, shaved parmesan, and black pepper.</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2 id="chicken-biryani">Chicken Biryani</h2>
+                    <img src="https://i.pinimg.com/originals/eb/07/fb/eb07fbadd098d0c1b4455daae8025210.jpg" alt="Chicken Biryani" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>Basmati Rice</li>
+                        <li>Chicken (cut into pieces)</li>
+                        <li>Onions (sliced)</li>
+                        <li>Yogurt</li>
+                        <li>Biryani Masala</li>
+                        <li>Saffron</li>
+                        <li>Mint Leaves</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>Soak basmati rice for 30 minutes, then boil until 70% cooked.</li>
+                        <li>Marinate the chicken in yogurt, biryani masala, and salt for 1 hour.</li>
+                        <li>In a pot, fry onions until golden, then add the marinated chicken and cook until tender.</li>
+                        <li>Layer the chicken and rice, sprinkle with saffron water and mint leaves.</li>
+                        <li>Cover and cook on low heat for 20 minutes.</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2 id="tom-yum-soup">Tom Yum Soup</h2>
+                    <img src="https://breadnshow.ru/image/catalog/articles/c40b_4.jpg" alt="Tom Yum Soup" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>Shrimp</li>
+                        <li>Lemongrass</li>
+                        <li>Galangal</li>
+                        <li>Chili Paste</li>
+                        <li>Lime Juice</li>
+                        <li>Mushrooms</li>
+                        <li>Fish Sauce</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>Boil water with lemongrass, galangal, and chili paste.</li>
+                        <li>Add mushrooms and shrimp, cooking until the shrimp turns pink.</li>
+                        <li>Season with lime juice and fish sauce to taste.</li>
+                        <li>Serve hot with fresh cilantro on top.</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2 id="french-croissants">French Croissants</h2>
+                    <img src="https://pazlyigra.ru/uploads/posts/2020-11/1604964672_nastol_com_ua-260453.jpg" alt="French Croissants" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>All-Purpose Flour</li>
+                        <li>Butter (cold)</li>
+                        <li>Milk</li>
+                        <li>Sugar</li>
+                        <li>Yeast</li>
+                        <li>Egg (for egg wash)</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>Make dough by combining flour, yeast, sugar, and milk, then refrigerate for 30 minutes.</li>
+                        <li>Roll out cold butter and layer it into the dough, folding and rolling it multiple times.</li>
+                        <li>Cut into triangles, roll into croissant shapes, and let rise for 1 hour.</li>
+                        <li>Brush with egg wash and bake at 375°F (190°C) for 15-20 minutes.</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2 id="sushi-platter">Sushi Platter</h2>
+                    <img src="https://i.pinimg.com/originals/20/72/3b/20723b5e6365155bc64a6299c64317e7.jpg" alt="Sushi Platter" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>Sushi Rice</li>
+                        <li>Seaweed (Nori)</li>
+                        <li>Fresh Fish (salmon, tuna, etc.)</li>
+                        <li>Soy Sauce</li>
+                        <li>Pickled Ginger</li>
+                        <li>Wasabi</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>Cook sushi rice and let it cool.</li>
+                        <li>Place the rice on a sheet of nori and add fresh fish slices on top.</li>
+                        <li>Roll the sushi tightly and cut into bite-sized pieces.</li>
+                        <li>Serve with soy sauce, pickled ginger, and wasabi.</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2 id="beef-tacos">Beef Tacos</h2>
+                    <img src="https://taksidomodedovo.com/images/msledf_1003_beeftaco_horiz.jpg" alt="Beef Tacos" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>Ground Beef</li>
+                        <li>Taco Seasoning</li>
+                        <li>Taco Shells</li>
+                        <li>Shredded Lettuce</li>
+                        <li>Cheese</li>
+                        <li>Sour Cream</li>
+                        <li>Salsa</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>Cook the ground beef in a skillet and add taco seasoning.</li>
+                        <li>Warm the taco shells in the oven.</li>
+                        <li>Fill the shells with the beef, lettuce, cheese, and toppings like sour cream and salsa.</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2 id="pad-thai">Pad Thai</h2>
+                    <img src="https://wok-pho.ru/uploads/styles/product_image_preview/webstore_products_049d6b62ae5ed5c28196f254e1b678c1.jpg?1661508025" alt="Pad Thai" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>Rice Noodles</li>
+                        <li>Tofu or Shrimp</li>
+                        <li>Bean Sprouts</li>
+                        <li>Peanuts (crushed)</li>
+                        <li>Tamarind Paste</li>
+                        <li>Fish Sauce</li>
+                        <li>Eggs</li>
+                        <li>Lime</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>Soak rice noodles in warm water for 30 minutes.</li>
+                        <li>Stir-fry tofu or shrimp in a hot pan.</li>
+                        <li>Push tofu to the side, crack in eggs, and scramble.</li>
+                        <li>Add noodles, tamarind paste, fish sauce, and bean sprouts. Stir-fry until well mixed.</li>
+                        <li>Top with peanuts and serve with lime wedges.</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2 id="banana-pancakes">Banana Pancakes</h2>
+                    <img src="https://avatars.mds.yandex.net/i?id=e7f63f5b20490d7d957e6a78243e3986_l-9657618-images-thumbs&n=13" alt="Banana Pancakes" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>2 Bananas (mashed)</li>
+                        <li>1 cup All-Purpose Flour</li>
+                        <li>1/2 cup Milk</li>
+                        <li>1 Egg</li>
+                        <li>1 tsp Baking Powder</li>
+                        <li>1 tsp Vanilla Extract</li>
+                        <li>Butter (for cooking)</li>
+                        <li>Maple Syrup (for serving)</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>In a bowl, mash the bananas and mix in the egg, milk, and vanilla extract.</li>
+                        <li>Add the flour and baking powder, stirring until the batter is smooth.</li>
+                        <li>Heat a non-stick skillet over medium heat and melt a little butter.</li>
+                        <li>Pour the batter into the pan to form pancakes, cooking for 2-3 minutes on each side until golden brown.</li>
+                        <li>Serve with maple syrup and additional banana slices, if desired.</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2 id="lasagna">Lasagna</h2>
+                    <img src="https://avatars.mds.yandex.net/i?id=e21e0d022f46e266a5cf7528b083a289_l-2477903-images-thumbs&n=13" alt="Lasagna" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>Lasagna Noodles</li>
+                        <li>1 lb Ground Beef</li>
+                        <li>2 cups Ricotta Cheese</li>
+                        <li>2 cups Mozzarella Cheese (shredded)</li>
+                        <li>2 cups Marinara Sauce</li>
+                        <li>1/2 cup Parmesan Cheese (grated)</li>
+                        <li>1 Egg</li>
+                        <li>Salt and Pepper</li>
+                        <li>Olive Oil</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>Preheat the oven to 375°F (190°C).</li>
+                        <li>Cook the lasagna noodles according to the package instructions and set aside.</li>
+                        <li>In a skillet, heat olive oil and cook the ground beef until browned. Add marinara sauce and simmer for 10 minutes.</li>
+                        <li>In a bowl, mix ricotta cheese, egg, salt, and pepper.</li>
+                        <li>In a baking dish, layer lasagna noodles, ricotta mixture, meat sauce, and shredded mozzarella. Repeat layers.</li>
+                        <li>Top with parmesan cheese and bake for 25-30 minutes until bubbly and golden.</li>
+                        <li>Let it cool for 10 minutes before serving.</li>
+                    </ol>
+                </section>
+        
+                <section>
+                    <h2 id="chicken-salad">Chicken Salad</h2>
+                    <img src="https://avatars.mds.yandex.net/i?id=f9f90b110b5d9a7eb50b67acd3ba6822ab26a327-8454246-images-thumbs&n=13" alt="Chicken Salad" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>2 cups Cooked Chicken (diced)</li>
+                        <li>1 cup Mayonnaise</li>
+                        <li>1/2 cup Celery (chopped)</li>
+                        <li>1/4 cup Red Onion (finely chopped)</li>
+                        <li>1 tbsp Lemon Juice</li>
+                        <li>Salt and Pepper to taste</li>
+                        <li>1/4 cup Fresh Parsley (chopped)</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>In a large bowl, combine the chicken, celery, red onion, and parsley.</li>
+                        <li>In a small bowl, mix the mayonnaise, lemon juice, salt, and pepper.</li>
+                        <li>Combine the dressing with the chicken mixture and stir well.</li>
+                        <li>Refrigerate for at least 1 hour before serving to let the flavors meld.</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2 id="vegetable-stir-fry">Vegetable Stir-Fry</h2>
+                    <img src="https://fasterfitness.com/wp-content/uploads/2014/04/stir-fry1782488-1.jpg" alt="Vegetable Stir-Fry" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>2 cups Broccoli florets</li>
+                        <li>1 cup Bell Peppers (sliced)</li>
+                        <li>1 cup Carrots (sliced)</li>
+                        <li>1 cup Snow Peas</li>
+                        <li>2 tbsp Soy Sauce</li>
+                        <li>1 tbsp Olive Oil</li>
+                        <li>1 tsp Ginger (minced)</li>
+                        <li>2 Garlic Cloves (minced)</li>
+                        <li>Salt and Pepper to taste</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>Heat olive oil in a large skillet over medium-high heat.</li>
+                        <li>Add garlic and ginger, and sauté for 1 minute.</li>
+                        <li>Add the broccoli, bell peppers, carrots, and snow peas. Stir-fry for 5-7 minutes or until vegetables are tender-crisp.</li>
+                        <li>Add soy sauce and stir well to coat vegetables.</li>
+                        <li>Season with salt and pepper to taste. Serve hot.</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2 id="tiramisu">Tiramisu</h2>
+                    <img src="https://cdn-m.sport24.ru/m/ce15/0e82/e282/4cdd/80cc/2848/df85/0c9b/1600_10000_max.jpeg" alt="Tiramisu" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>6 Egg Yolks</li>
+                        <li>1 cup Granulated Sugar</li>
+                        <li>1 cup Mascarpone Cheese</li>
+                        <li>1 cup Heavy Cream</li>
+                        <li>1 cup Espresso (cooled)</li>
+                        <li>24 Ladyfingers</li>
+                        <li>Cocoa Powder (for dusting)</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>In a large bowl, whisk egg yolks and sugar until pale and thick.</li>
+                        <li>Fold in mascarpone cheese until smooth.</li>
+                        <li>In a separate bowl, whip heavy cream until stiff peaks form. Fold into mascarpone mixture.</li>
+                        <li>Dip ladyfingers into espresso briefly and layer them in a serving dish.</li>
+                        <li>Spread half of the mascarpone mixture over the ladyfingers. Repeat layers.</li>
+                        <li>Cover and refrigerate for at least 4 hours, preferably overnight.</li>
+                        <li>Before serving, dust with cocoa powder.</li>
+                    </ol>
+                </section>
+        
+                <section>
+                    <h2 id="chocolate-chip-cookies">Chocolate Chip Cookies</h2>
+                    <img src="https://i.ytimg.com/vi/dxisygejvls/maxresdefault.jpg" alt="Chocolate Chip Cookies" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>2 ¼ cups All-Purpose Flour</li>
+                        <li>1 teaspoon Baking Soda</li>
+                        <li>½ teaspoon Salt</li>
+                        <li>1 cup Unsalted Butter (softened)</li>
+                        <li>¾ cup Granulated Sugar</li>
+                        <li>¾ cup Brown Sugar (packed)</li>
+                        <li>1 teaspoon Vanilla Extract</li>
+                        <li>2 Large Eggs</li>
+                        <li>2 cups Semi-Sweet Chocolate Chips</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>Preheat the oven to 375°F (190°C).</li>
+                        <li>In a bowl, whisk together flour, baking soda, and salt.</li>
+                        <li>In a separate large bowl, cream together softened butter, granulated sugar, brown sugar, and vanilla extract until smooth.</li>
+                        <li>Add eggs one at a time, beating well after each addition.</li>
+                        <li>Gradually add the flour mixture, mixing until just combined. Stir in the chocolate chips.</li>
+                        <li>Drop spoonfuls of dough onto a baking sheet lined with parchment paper.</li>
+                        <li>Bake for 9-11 minutes or until edges are golden brown.</li>
+                        <li>Remove from the oven and let cool on the baking sheet for a few minutes before transferring to a wire rack to cool completely.</li>
+                    </ol>
+                </section>
+        
+                <section>
+                    <h2 id="guacamole">Guacamole</h2>
+                    <img src="https://i.pinimg.com/originals/c0/85/6b/c0856ba61593cfd6f6865b5b6e4c4cc6.jpg" alt="Guacamole" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>3 ripe Avocados</li>
+                        <li>1 Lime (juiced)</li>
+                        <li>1 small Onion (finely chopped)</li>
+                        <li>1 Tomato (diced)</li>
+                        <li>1-2 Jalapeños (finely chopped, optional)</li>
+                        <li>Salt to taste</li>
+                        <li>Fresh Cilantro (chopped, optional)</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>Cut avocados in half, remove the pit, and scoop the flesh into a bowl.</li>
+                        <li>Mash the avocado with a fork or potato masher to your desired consistency.</li>
+                        <li>Add lime juice, onion, tomato, jalapeños (if using), and salt. Mix well.</li>
+                        <li>Taste and adjust seasoning, adding more lime juice or salt if needed.</li>
+                        <li>Stir in fresh cilantro, if desired.</li>
+                        <li>Serve immediately with tortilla chips, or cover with plastic wrap (pressing it against the surface) to prevent browning if storing for later.</li>
+                    </ol>
+                </section>
+                
+                
+        
+                <section>
+                    <h2 id="cheesecake">Cheesecake</h2>
+                    <img src="https://artkonditer.by/wp-content/uploads/2019/10/Slivochnyj-biskvit.jpg" alt="Cheesecake" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <li>1 ½ cups Graham Cracker Crumbs</li>
+                        <li>½ cup Unsalted Butter (melted)</li>
+                        <li>2 cups Cream Cheese (softened)</li>
+                        <li>1 cup Granulated Sugar</li>
+                        <li>3 Large Eggs</li>
+                        <li>1 teaspoon Vanilla Extract</li>
+                        <li>1 cup Sour Cream</li>
+                        <li>Fresh Fruit or Fruit Sauce (for topping)</li>
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <ol>
+                        <li>Preheat the oven to 325°F (163°C).</li>
+                        <li>In a bowl, mix graham cracker crumbs and melted butter until combined. Press mixture into the bottom of a springform pan to form the crust.</li>
+                        <li>In a large mixing bowl, beat cream cheese and sugar until smooth.</li>
+                        <li>Add eggs one at a time, mixing well after each addition. Stir in vanilla extract.</li>
+                        <li>Pour the cream cheese mixture over the crust in the pan.</li>
+                        <li>Bake for 55-60 minutes or until the center is set and slightly jiggly.</li>
+                        <li>Turn off the oven and let the cheesecake cool in the oven for 1 hour.</li>
+                        <li>Refrigerate for at least 4 hours, or preferably overnight, before serving.</li>
+                        <li>Top with fresh fruit or fruit sauce before serving.</li>
+                    </ol>
+                </section>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+                crossorigin="anonymous">
+                </script>
+                <script src="script.js"></script>
+                
+                </div>
+        </div>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous">
+    </script>
+      <script src="/script.js"></script>
+    <script src="/theme.js" defer></script>
+</body>
+    
+</html>

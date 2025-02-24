@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .login-form h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .login-form label {
+            margin-bottom: 5px;
+            display: block;
+        }
+        .login-form input {
+            width: 93%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(24, 134, 77);
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-form button:hover {
+            background-color: rgb(24, 108, 65);
+        }
+        .register-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .register-link a {
+            color: rgb(24, 134, 77);
+            text-decoration: none;
+        }
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-form">
+        <h1>Login</h1>
+        <form action="/login" method="POST" id="login-form">
+            <label for="email">Email:</label>
+            <input type="email" name="email" required><br>
+            
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+
+            <button type="submit" id="loginBtn">Login</button>
+        </form>
+        <a href="/register">Don't have an account? Register here.</a>
+    </div>
+    
+</body>
+</html>

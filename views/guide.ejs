@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <title>Document</title>
+    <link rel="stylesheet" href="/sidebar.css">
+    <link rel="stylesheet" href="/guide.css">
+</head>
+<body>
+    <aside id="sidebar">
+        <div class="d-flex">
+            <button class="toggle-btn" type="button">
+                <i class="lni lni-menu"></i>
+            </button>
+            <div class="sidebar-logo">
+                <a href="/"><i class="lni lni-chef-hat" style="margin-top: 1rem;">Recepie</i></a>
+            </div>
+        </div>
+        <ul class="sidebar-nav">
+            <% if (isAuthenticated) { %>
+                <li class="sidebar-item">
+                    <a href="/profile" class="sidebar-link">
+                        <i class="lni lni-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+            <% } %>
+            
+            <li class="sidebar-item">
+                <a href="/recipes" class="sidebar-link">
+                    <i class="lni lni-agenda"></i>
+                    <span>Recepies</span>
+                </a>
+            </li>
+            
+            <% if (!isAuthenticated) { %>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                        data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                        <i class="lni lni-protection"></i>
+                        <span>Auth</span>
+                    </a>
+                    <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="/login" class="sidebar-link">Login</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="/register" class="sidebar-link">Register</a>
+                        </li>
+                    </ul>
+                </li>
+            <% } %>
+    
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                    data-bs-target="#more" aria-expanded="false" aria-controls="more">
+                    <i class="lni lni-layout"></i>
+                    <span>More</span>
+                </a>
+                <ul id="more" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a href="/guide" class="sidebar-link">Guide</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/aboutus" class="sidebar-link">About</a>
+                    </li>
+                </ul>
+            </li>
+    
+            <li class="sidebar-item">
+                <a href="/contact" class="sidebar-link">
+                    <i class="lni lni-popup"></i>
+                    <span>Contact us</span>
+                </a>
+            </li>
+    
+            <% if (isAuthenticated) { %>
+                <li class="sidebar-item">
+                    <a href="/settings" class="sidebar-link">
+                        <i class="lni lni-cog"></i>
+                        <span>Setting</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/logout" class="sidebar-link">
+                        <i class="lni lni-exit"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            <% } %>
+        </ul>
+    </aside>
+    
+
+
+<div class="content">
+    <div class="container">
+        <div class="del">
+            <h1 class="guide">10 golden rules of kitchen hygiene</h1>
+            <img src="https://avatars.dzeninfra.ru/get-zen_doc/1925657/pub_62100fd0d41b1c157d1141e4_6210157638e7b1267a13ff20/scale_1200" alt="" style="max-width: 1110px; max-height: 500px;">
+            <p>If food is your language of love, include food hygiene in your vocabulary... there's nothing romantic about a sick stomach. </p>
+            <p>Whether it's foraging, cooking, eating or just spending time, the kitchen is the hub of your household. That is why it requires the same attention when it comes to maintaining good hygiene. Making sure everyone is # hygienic will help you avoid the nasty bacteria that is needed to keep everyone happy and healthy.</p>
+            <p>Tip: Why not help the whole family remember this list of 10 rules for the kitchen by printing it out and sticking it on the fridge? You can even ask kids to illustrate this with colorful pens if they're creative.</p>
+            
+
+            <img src="https://avatars.dzeninfra.ru/get-zen_doc/3990034/pub_62100fd0d41b1c157d1141e4_621015dab0186b70eb4ab82a/scale_1200" alt="" style="max-width: 1110px; max-height: 500px;">
+            <h3>1. Wash your hands thoroughly</h3>
+            <p>
+                Make sure your hands are clean. Bacteria are easily transmitted, so wash your hands while cooking. Regular hand washing is one of the most important hygiene practices in the # kitchen and for children, so make sure the whole family knows how to wash their hands properly. Other hand hygiene tips include:
+                Don't wear rings when you're busy in the kitchen (they make it difficult to wash your hands properly and also pick up bacteria and dirt).
+            </p>
+            <ul>
+                <li>
+                    Cut nails short more hygienically and do not paint them with varnish.</li>
+                <li>
+                    If you get a cut on your arm, clean it immediately and apply a patch.</li>
+                <li>
+                    As for personal hygiene, it's also important to tie long hair when you're washing up, as hair can carry germs too. Did you know that each of us loses about 50 hairs a day? Professionals wear hats and hair nets for a reason!</li>
+            </ul>
+
+        
+            <h3>2. Prepare Food Thoroughly</h3>
+            <p>One of the most important rules of food hygiene is ensuring that food is cooked properly. Undercooking can lead to harmful bacteria causing food poisoning.</p>
+            <ul>
+                <li>Cut food to check if it is ready.</li>
+                <li>Use a food thermometer to ensure meat is cooked to the proper temperature.</li>
+                <li>Make sure any reheated food is very hot.</li>
+                <li>Serve cooked food at a temperature of at least 70°C (the temperature range of 15°C to 55°C is when bacteria multiply the fastest).</li>
+            </ul>
+        
+            <h3>3. Store Food Properly</h3>
+            <img src="https://avatars.dzeninfra.ru/get-zen_doc/249065/pub_62100fd0d41b1c157d1141e4_6210163e2bfc4f49f82ec8d4/scale_1200" alt="Proper food storage" style="max-width: 1110px; max-height: 500px;">
+            <p>Proper food preparation is only one of the essential rules of food hygiene. Another crucial kitchen rule is safe storage. Proper storage helps protect food from chemicals and harmful bacteria, as well as minimizes contact between air and food. These simple tips will help you store food safely:</p>
+            <p>Ensure leftovers or open food packages are covered with cling film or stored in an airtight container.</p>
+            <p>Also, use airtight containers for pantry items like flour, rice, and pasta.</p>
+            <p>Do not place warm food in the refrigerator. Let it cool first but place it in the fridge or freezer as soon as possible (within two hours). Remember this when preparing family meals for freezing!</p>
+            <p>Do not leave food out for more than two hours (including chopped vegetables and fruits).</p>
+            <p>Place food bags on plates to prevent juices from dripping onto countertops or refrigerator shelves—store them on the lowest shelf to avoid contamination.</p>
+            <p>Keep the fridge free of expired products.</p>
+            <p>Do not overfill the refrigerator (there should be enough space for proper air circulation).</p>
+            <p>Place chilled items in the refrigerator as soon as possible after purchase (the same applies to frozen goods in the freezer).</p>
+        
+            <h3>4. Wipe Down Countertops</h3>
+            <p>Wiping down kitchen countertops after each use is one of the simplest (and most important) basic rules of kitchen hygiene. Not only will it keep things clean and tidy, but it will also prevent the spread of bacteria.</p>
+            <p>Tip: Maintaining good hygiene in the kitchen comes down to spot cleaning. Keep a roll of highly absorbent kitchen paper on hand for quickly wiping up spills. It's strong even when wet, so it will hold up during cleaning and wringing.</p>
+        
+            <h3>5. Prevent Cross-Contamination</h3>
+            <p>If you've ever had food poisoning, you'll understand why preventing cross-contamination ranks high on the list of basic kitchen hygiene rules. You don’t want harmful microorganisms transferring from raw to cooked food and making you sick. Follow these rules to avoid cross-contamination in the kitchen:</p>
+            <p>Use different cutting boards for fish, meat, vegetables, dairy products, or bread (different-colored boards can help with this).</p>
+            <p>Use different utensils for raw and cooked food.</p>
+            <p>Never leave edible food near raw meat.</p>
+        
+            <h3>6. Clean Your Cutting Board After Use</h3>
+            <img src="https://avatars.dzeninfra.ru/get-zen_doc/4600043/pub_62100fd0d41b1c157d1141e4_621016d2b4982c6569bcb297/scale_1200" alt="Clean cutting board" style="max-width: 1110px; max-height: 500px;">
+            <p>Food debris left on a cutting board will soon become a breeding ground for bacteria, so it is crucial to clean the board immediately after use to stop the spread. Quick, easy, and necessary cleaning of cutting boards is one of the basic rules of kitchen hygiene.</p>
+        
+            <h3>7. Take Out the Trash Regularly</h3>
+            <img src="https://avatars.dzeninfra.ru/get-zen_doc/5212789/pub_62100fd0d41b1c157d1141e4_621016ff3eb19001214a8f40/scale_1200" alt="Taking out the trash" style="max-width: 1110px; max-height: 500px;">
+            <p>Regularly replacing the trash bag is a key aspect of kitchen hygiene. Old food in the trash will soon decompose, leading to bacteria buildup, so take out the trash daily to avoid unpleasant smells.</p>
+        
+            <h3>8. Stop Grease in Its Tracks</h3>
+            <p>Have you ever wiped a greasy spot only to find it transferred from your cloth to another kitchen surface? Instead, try using a piece of absorbent kitchen towel—this will stop the spread of grease and bacteria.</p>
+        
+            <h3>9. Keep Your Refrigerator Clean</h3>
+            <img src="https://avatars.dzeninfra.ru/get-zen_doc/5233283/pub_62100fd0d41b1c157d1141e4_6210176d11695207df0247c3/scale_1200" alt="Clean refrigerator" style="max-width: 1110px; max-height: 500px;">
+            <p>Keeping your refrigerator clean is one of the top 10 rules of kitchen hygiene. Left alone, spills and decomposing food can spread nastiness to everything else, so use kitchen paper for daily spot cleaning between thorough refrigerator cleaning sessions.</p>
+            <p>While we’re focused on the refrigerator, it’s worth noting that it’s also the place where you should defrost frozen foods, not on the countertop. This will help prevent bacterial growth due to rapid temperature changes.</p>
+        
+            <h3>10. Wash Your Sink Daily</h3>
+            <p>Your sink is used regularly throughout the day, so it will quickly get dirty and covered in bacteria if not kept clean. Again, this is one of those kitchen hygiene rules that doesn’t take much time but is well worth it.</p>
+            <p>Quickly wash the sink once a day using a sponge and kitchen cleaner. Don’t forget about the taps! Wipe away any water or spills around the sink with a kitchen towel to maintain hygiene between cleaning days.</p>
+            <p>Also, keep your oven hygienic by ensuring it’s cleaned regularly. The same applies to your stove, grill, toaster—essentially everything you use to prepare food.</p>
+            <p>Whether it's following food hygiene rules, frequently replacing the trash, or keeping work surfaces clean, these basic kitchen hygiene rules will help protect your family from food poisoning and illness.</p>
+        
+            <p>Helpful Articles:</p>
+            <ul>
+                <li>The Best Way to Charge Your Devices</li>
+                <li>Computer Care Tips You May Not Know</li>
+            </ul>
+            <p>Hope this article was useful to you! Thank you for visiting my channel! Comments are welcome!</p>
+        
+            
+        </div>
+        
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous">
+        </script>
+    <script src="/script.js"></script>
+    <script src="/theme.js" defer></script>
+</body>
+</html>
