@@ -37,6 +37,7 @@ app.set('view engine', 'ejs');
 
 // 📌 Middleware to pass authentication status to all EJS files
 app.use((req, res, next) => {
+    console.log(`📌 Request: ${req.method} ${req.url} | JWT:`, req.session.token || "No token set");
     res.locals.isAuthenticated = !!req.session.userId; // True if logged in
     next();
 });
@@ -109,6 +110,7 @@ app.post('/register', async (req, res) => {
 // 📌 Вход (Login)
 app.get('/login', (req, res) => res.render('login'));
 // 📌 Вход (Login) с перенаправлением
+// 📌 Вход (Login) с логированием JWT
 app.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -118,6 +120,9 @@ app.post('/login', async (req, res) => {
             return res.status(401).send('Неверные учетные данные');
         }
 
+        // ✅ Log JWT before setting
+        console.log("🔹 JWT before login:", req.session.token || "No token set");
+
         // ✅ Создаем JWT-токен
         const token = jwt.sign({ id: user._id }, jwtSecret, { expiresIn: '1h' });
 
@@ -126,9 +131,13 @@ app.post('/login', async (req, res) => {
         req.session.userName = user.name;
         req.session.token = token;
 
+        // ✅ Log JWT after setting
+        console.log("✅ JWT after login:", token);
+
         // ✅ Перенаправляем на главную страницу
         res.redirect('/');
     } catch (err) {
+        console.error('❌ Ошибка сервера:', err);
         res.status(500).send('Ошибка сервера');
     }
 });
@@ -187,10 +196,12 @@ app.get('/', async (req, res) => {
 
 // 📌 Выход из аккаунта
 app.get('/logout', (req, res) => {
+    console.log("🚪 Logging out, clearing JWT:", req.session.token || "No token set");
     req.session.destroy(() => {
         res.redirect('/login');
     });
 });
+
 
 // 📌 Профиль пользователя
 app.get('/profile', requireAuth, async (req, res) => {
